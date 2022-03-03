@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block main %}
+  <section class="bp-welcome">
+    <div class="bp-welcome__area">
+      {% if data.user %}
+        {% area data.page, 'main' %}
+      {% endif %}
+      {% component 'coaster:todaysAnniversaries' with { max: 5 } %}
+      {% component 'coaster:upcomingOpeningDates' with { max: 5 } %}
+    </div>
+  </section>
+{% endblock %}

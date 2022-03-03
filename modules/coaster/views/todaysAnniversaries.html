@@ -1,0 +1,9 @@
+{% import "macros/anniversary-table.html" as table %}
+
+<section>
+  <h2>Today's Anniversaries</h2>
+  <script>console.log({{data.todays | json}})</script>
+  {% if data.todays.length %}
+    {{ table.render(data.todays)}}
+  {% endif %}
+</section>

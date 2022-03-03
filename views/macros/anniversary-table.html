@@ -1,0 +1,20 @@
+{% macro render(coasters) %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Anniversary</th>
+        <th scope="col">Name</th>
+        <th scope="col">Park</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for coaster in coasters %}
+        <tr{% if coaster.incompleteOpenedDate %} class="table-warning"{% endif %}>
+          <td>{{ coaster.dateOpened | date('M/D/YYYY') }}</td>
+          <td>{{ coaster.title }}</td>
+          <td>{{ coaster.park }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endmacro %}

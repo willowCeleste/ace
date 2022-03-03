@@ -1,0 +1,8 @@
+{% import "macros/anniversary-table.html" as table %}
+
+<section>
+  <h2>Upcoming Opening Anniversaries</h2>
+  {% if data.upcoming.length %}
+    {{ table.render(data.upcoming)}}
+  {% endif %}
+</section>

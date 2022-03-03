@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% import '@apostrophecms/pager:macros.html' as pager with context %}
+{% set coasters = data.pieces %}
+{% block main %}
+  <h1>{{ data.page.title }}</h1>
+  <script>console.log({{data.pieces | json}})</script>
+
+  {% if coasters.length %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Park</th>
+          <th scope="col">Opened</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for coaster in coasters %}
+          <tr{% if coaster.incompleteOpenedDate %} class="table-warning"{% endif %}>
+            <td>{{ coaster.title }}</td>
+            <td>{{ coaster.park }}</td>
+            <td>{{ coaster.dateOpened or coaster.incompleteOpenedDate  }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div>No coasters to show!</div>
+  {% endif %}
+  
+
+  {{ pager.render({
+    page: data.currentPage,
+    total: data.totalPages,
+    class: 'blog-pager'
+  }, data.url) }}
+{% endblock %}
